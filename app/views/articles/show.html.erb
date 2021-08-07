@@ -1,0 +1,37 @@
+<div class="grid grid-cols-4 space-x-16">
+  <div class="flex flex-col space-y-12">
+    <div>
+      <h3 class="font-extrabold text-xl text-blueGrey-800 tracking-wide mb-4">Últimos Artículos</h3>
+      <div class="w-full border-b-2 border-blueGrey-300"></div>
+    </div>
+    <ul class="flex flex-col space-y-12">
+      <% @last_articles.each do |article| %>
+        <li><%= render "articles/article", article: article %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-span-3 flex flex-col space-y-6 items-start">
+    <%= content_tag :span, @article.tag[:name], class: @article.tag[:class] + ' px-5 py-0.5 rounded-full text-sm font-semibold' %>
+    <div class="w-full flex justify-between">
+      <h2 class="text-3xl text-blueGrey-800 font-extrabold tracking-wide"><%= @article.title %></h2>
+    </div>
+    <p class="text-blueGrey-600 font-light"><%= @article.created_at.strftime("%b %d, %Y") %></p>
+
+    <% if policy(@article).show? %>
+      <p class="text-blueGrey-600 font-light"><%= @article.body %></p>
+    <% else %>
+      <div>
+        <p class="text-blueGrey-600 font-light"><%= @article.body_preview %>...</p>
+        <div class="relative">
+          <div class="filter blur-lg">
+            <p class="text-blueGrey-600 font-light">Donec id ipsum luctus, tincidunt ligula id, lobortis lacus. Quisque ac iaculis velit. Vestibulum egestas erat sit amet dictum ultricies. Morbi eget venenatis libero. Vestibulum placerat, mi id malesuada molestie, diam tortor auctor augue, nec finibus justo sem pellentesque ex. Pellentesque imperdiet semper dictum. Donec tortor metus, facilisis vel felis ut, congue aliquet urna. Duis vel ante purus. Pellentesque rutrum lacus eros, eu egestas turpis dictum at. Quisque a nulla sed lectus blandit cursus. Morbi ultrices condimentum imperdiet. Nullam vehicula magna erat, molestie rhoncus turpis auctor ac. Etiam sollicitudin ante felis, ut suscipit dolor vehicula sed. Sed blandit nulla posuere, bibendum lorem sed, aliquet nunc. Integer ut dolor a ipsum imperdiet ornare. Sed tristique, lacus vitae dapibus condimentum, felis diam pretium nisl, eget pretium tortor ex ultrices dui.</p>
+            <p class="text-blueGrey-600 font-light">Nullam sed fringilla risus, tempus auctor lorem. Cras blandit tortor in pulvinar sollicitudin. Fusce diam magna, hendrerit et purus non, placerat sollicitudin turpis. Donec id ante metus. Curabitur efficitur, sapien sed pharetra suscipit, lacus tellus fermentum felis, ac luctus sem augue non lorem. Mauris malesuada velit a lectus vehicula laoreet. Suspendisse ligula urna, ornare ac interdum ut, fermentum sed ipsum. In hac habitasse platea dictumst. Nam dictum metus ac quam mollis laoreet. Vestibulum dapibus pellentesque erat a fermentum. Pellentesque feugiat ante a neque consectetur, in sagittis libero aliquet. Cras facilisis mollis risus, quis blandit nisi egestas in. In eget semper quam. Nunc tempor sollicitudin luctus. Aliquam augue erat, fermentum nec leo eget, commodo condimentum augue.</p>
+          </div>
+          <p class="text-blueGrey-600 font-light absolute left-2/4 top-2/4 transform -translate-x-1/2 -translate-y-1/2">
+            Si quieres leer el resto del artículo, <%= link_to "inicia sesión", new_user_session_path , class: "text-blue-500" %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

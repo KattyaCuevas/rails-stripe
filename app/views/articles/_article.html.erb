@@ -1,0 +1,6 @@
+<%= link_to article, class: "flex flex-col space-y-4 items-start" do %>
+  <%= content_tag :span, article.tag[:name], class: article.tag[:class] + ' px-5 py-0.5 rounded-full text-sm font-semibold' %>
+  <h4 class="font-bold text-lg text-blueGrey-800 tracking-wide"><%= article.title %></h4>
+  <p class="text-blueGrey-600 font-light text-sm"><%= article.body[0..125] %>...</p>
+  <p class="text-blueGrey-600 font-light text-sm self-end"><%= article.created_at.strftime("%b %d, %Y") %></p>
+ <% end %> 
