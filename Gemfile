@@ -53,3 +53,5 @@ gem 'devise', '~> 4.8'
 gem 'pundit', '~> 2.1'
 
 gem "tailwindcss-rails", "~> 0.3.3"
+
+gem "stripe", "~> 5.37"

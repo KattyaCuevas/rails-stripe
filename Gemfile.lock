@@ -170,6 +170,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    stripe (5.37.0)
     tailwindcss-rails (0.3.3)
       rails (>= 6.0.0)
     thor (1.1.0)
@@ -214,6 +215,7 @@ DEPENDENCIES
   rails (~> 6.1.4)
   sass-rails (>= 6)
   spring
+  stripe (~> 5.37)
   tailwindcss-rails (~> 0.3.3)
   turbolinks (~> 5)
   tzinfo-data
