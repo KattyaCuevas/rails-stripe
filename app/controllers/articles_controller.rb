@@ -16,8 +16,10 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    # ADD YOUR CODE HERE
   end
 
   def create
+    # ADD YOUR CODE HERE
   end
 end

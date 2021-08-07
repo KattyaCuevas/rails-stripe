@@ -1,6 +1,9 @@
 class Article < ApplicationRecord
+  # Callbacks
   before_save :add_body_preview, if: :body?
+  # ADD YOUR CODE HERE
 
+  # Scopes
   scope :free, -> { where(private: false) }
   scope :paid, -> { where(private: true) }
 
