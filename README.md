@@ -1,24 +1,64 @@
-# README
+# Editorial App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Aplicación que construiremos a lo largo del curso de **Integración de Pagos en Rails con Stripe** en Código Facilito.
 
-Things you may want to cover:
+Esta es la primera versión de la app, la que será la base para los mini proyectos del curso.
+En esta versión, tenemos una lista de artículos, los cuáles pueden ser públicos o privados. Los artículos privados por defecto no se pueden leer, pero si inicias sesión tienes acceso a estos artículos.
 
-* Ruby version
+## Tech Stack
 
-* System dependencies
+- Ruby 3.0.1
+- Rails 6.1.4
+- Yarn 1.22.10
+- PostgreSQL 13.3
 
-* Configuration
 
-* Database creation
+Gemas agregadas a Rails:
 
-* Database initialization
+- Devise
+- Pundit
+- TailwindCSS-rails
+- dotenv-rails
+- Faker
+- Stripe (en las próximas versiones)
 
-* How to run the test suite
+## Correr el proyecto en local
 
-* Services (job queues, cache servers, search engines, etc.)
+Clonar el proyecto
 
-* Deployment instructions
+```bash
+  git clone git@github.com:KattyaCuevas/rails-stripe.git
+```
 
-* ...
+Ir al directorio del proyecto
+
+```bash
+  cd rails-stripe
+```
+
+Instalar las dependencias
+
+```bash
+  bundle install
+  yarn install
+```
+
+Preparar la base de datos:
+
+```bash
+  rails db:create
+  rails db:migrate
+  rails db:seed
+```
+
+Iniciar el servidor
+
+```bash
+  rails server
+```
+
+Iniciar webpacker:
+
+```bash
+  bin/webpack-dev-server
+```
