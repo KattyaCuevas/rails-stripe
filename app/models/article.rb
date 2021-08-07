@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
   # Callbacks
   before_save :add_body_preview, if: :body?
-  # ADD YOUR CODE HERE
+  after_create :create_stripe_product
 
   # Scopes
   scope :free, -> { where(private: false) }
@@ -25,5 +25,15 @@ class Article < ApplicationRecord
     return 'bg-red-200 text-red-600' unless private
 
     'bg-blue-200 text-blue-600'
+  end
+
+  def create_stripe_product
+    product = Stripe::Product.create(name: "article_#{id}")
+    pricing = Stripe::Price.create(
+      unit_amount: price,
+      currency: 'usd',
+      product: product.id
+    )
+    update(stripe_pricing_id: pricing.id, stripe_product_id: product.id)
   end
 end

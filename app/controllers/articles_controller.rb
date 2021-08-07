@@ -16,10 +16,21 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    # ADD YOUR CODE HERE
+    @article = Article.new
   end
 
   def create
-    # ADD YOUR CODE HERE
+    @article = Article.new(article_params)
+    if @article.save
+      redirect_to @article
+    else
+      render :new, alert: @article.errors
+    end
+  end
+
+  private
+
+  def article_params
+    params.require(:article).permit(:title, :body, :private, :price)
   end
 end

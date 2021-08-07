@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_06_194040) do
+ActiveRecord::Schema.define(version: 2021_08_07_032942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 2021_08_06_194040) do
     t.boolean "private", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "price"
+    t.string "stripe_pricing_id"
+    t.string "stripe_product_id"
   end
 
   create_table "users", force: :cascade do |t|
