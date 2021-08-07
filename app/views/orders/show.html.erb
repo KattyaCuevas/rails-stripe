@@ -1,0 +1,28 @@
+<div class="grid grid-cols-4 space-x-16">
+  <div class="flex flex-col space-y-12">
+    <div>
+      <h3 class="text-extrabold text-2xl text-blueGrey-800 tracking-wide mb-4">Últimos Artículos</h3>
+      <div class="w-full border-b-2 border-blueGrey-300"></div>
+    </div>
+    <ul class="flex flex-col space-y-12">
+      <% @last_articles.each do |article| %>
+        <li><%= render "articles/article", article: article %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-span-3 flex flex-col items-start space-y-8">
+    <h2 class="text-4xl text-blueGrey-800 font-extrabold tracking-wide">Carrito de Compras</h2>
+    <ul class="w-full">
+      <% @order.order_items.each do |order_item| %>
+        <li class="flex justify-between px-12 py-5">
+          <div class="text-xl font-semibold text-blueGrey-800"><%= order_item.article.title%></div>
+          <div class="text-xl text-blueGrey-600">$ <%= number_to_currency(order_item.article.price / 100.0, delimiter: '', unit: '') %></div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="self-end px-12 py-5">
+      <span class="text-xl font-semibold text-blueGrey-800 uppercase mr-20">Total</span>
+      <span class="text-xl font-semibold text-blueGrey-800">$ <%= number_to_currency(@order.order_items.map { |oi| oi.article.price }.sum / 100, delimiter: '', unit: '') %></span>
+    </div>
+  </div>
+</div>
