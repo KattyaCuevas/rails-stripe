@@ -16,5 +16,6 @@ class OrdersController < ApplicationController
   def checkout
     order = Order.find(params[:order_id])
     @intent = Stripe::PaymentIntent.create({ amount: order.total, currency: 'usd' })
+    order.update(stripe_payment_id: @intent.id)
   end
 end
