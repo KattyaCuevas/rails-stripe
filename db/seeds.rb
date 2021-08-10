@@ -2,7 +2,7 @@ require 'faker'
 
 p 'Creating Categories'
 basic = Category.create(name: 'Basic', price: 300)
-premium = Category.create(name: 'Premium', price: 300)
+premium = Category.create(name: 'Premium', price: 500)
 
 p 'Creating Articles'
 30.times do

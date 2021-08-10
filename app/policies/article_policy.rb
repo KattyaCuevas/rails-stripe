@@ -4,6 +4,8 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-    user || !record.private
+    return true unless record.private
+
+    user.article_ids.include?(record.id)
   end
 end

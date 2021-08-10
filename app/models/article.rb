@@ -9,6 +9,8 @@ class Article < ApplicationRecord
   scope :free, -> { where(private: false) }
   scope :paid, -> { where(private: true) }
 
+  delegate :price, to: :category
+
   def add_body_preview
     self.body_preview = body[0..150]
   end
