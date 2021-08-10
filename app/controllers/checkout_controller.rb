@@ -13,6 +13,7 @@ class CheckoutController < ApplicationController
         cancel_url: order_url(order)
       }
     )
+    order.update!(stripe_payment_id: session.payment_intent)
     redirect_to session.url
   end
 end

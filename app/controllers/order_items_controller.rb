@@ -12,6 +12,6 @@ class OrderItemsController < ApplicationController
 
   def current_order
     order = Order.where(user_id: current_user.id, status: 'created').last
-    Order.create(user_id: current_user.id) unless order
+    order || Order.create(user_id: current_user.id)
   end
 end

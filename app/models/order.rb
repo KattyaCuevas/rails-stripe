@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   private
 
   def paid_order?
-    status == 'paid'
+    status == 'succeeded'
   end
 
   def add_articles_to_user

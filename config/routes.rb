@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     get '/current', to: 'orders#current', on: :collection
   end
   resources :checkout, only: [:create]
+  post 'webhook', to: 'webhook#receive'
 end
