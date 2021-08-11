@@ -1,0 +1,20 @@
+<h2 class="text-4xl text-blueGrey-800 font-extrabold tracking-wide mb-16">Mi perfil</h2>
+
+<div class="grid grid-cols-2 space-x-16">
+  <div class="flex flex-col space-y-12">
+    <div>
+      <h3 class="text-extrabold text-2xl text-blueGrey-800 tracking-wide mb-4">Artículos Comprados</h3>
+      <div class="w-full border-b-2 border-blueGrey-300"></div>
+    </div>
+    
+    <% if @articles.any? %>
+      <ul class="flex flex-col space-y-12">
+        <% @articles.each do |article| %>
+          <li><%= render "articles/article", article: article %></li>
+        <% end %>
+      </ul>    
+    <% else %>
+      No tienen artículos comprados
+    <% end %>
+  </div>
+</div>

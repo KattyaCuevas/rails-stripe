@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong>Stripe pricing:</strong>
+  <%= @category.stripe_pricing_id %>
+</p>
+
+<p>
+  <strong>Stripe product:</strong>
+  <%= @category.stripe_product_id %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @category.price %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
