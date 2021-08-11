@@ -28,7 +28,12 @@
             <p class="text-blueGrey-600 font-light">Nullam sed fringilla risus, tempus auctor lorem. Cras blandit tortor in pulvinar sollicitudin. Fusce diam magna, hendrerit et purus non, placerat sollicitudin turpis. Donec id ante metus. Curabitur efficitur, sapien sed pharetra suscipit, lacus tellus fermentum felis, ac luctus sem augue non lorem. Mauris malesuada velit a lectus vehicula laoreet. Suspendisse ligula urna, ornare ac interdum ut, fermentum sed ipsum. In hac habitasse platea dictumst. Nam dictum metus ac quam mollis laoreet. Vestibulum dapibus pellentesque erat a fermentum. Pellentesque feugiat ante a neque consectetur, in sagittis libero aliquet. Cras facilisis mollis risus, quis blandit nisi egestas in. In eget semper quam. Nunc tempor sollicitudin luctus. Aliquam augue erat, fermentum nec leo eget, commodo condimentum augue.</p>
           </div>
           <p class="text-blueGrey-600 font-light absolute left-2/4 top-2/4 transform -translate-x-1/2 -translate-y-1/2">
-            Si quieres leer el resto del artículo, <%= link_to "inicia sesión", new_user_session_path , class: "text-blue-500" %>
+            Si quieres leer el resto del artículo,
+            <% if user_signed_in? %>
+              <%= link_to "agrégalo a tu carrito.", order_items_path(article_id: params[:id]), method: :post, class: 'text-blueGrey-700 font-bold' %>
+            <% else %>
+              <%= link_to "inicia sesión", new_user_session_path , class: "text-blue-500" %>
+            <% end %>
           </p>
         </div>
       </div>

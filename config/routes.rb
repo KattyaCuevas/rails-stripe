@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   root to: 'articles#index'
 
   resources :articles, except: [:destroy]
+  resources :order_items, only: [:create]
+  resources :orders do
+    get '/current', to: 'orders#current', on: :collection
+  end
 end

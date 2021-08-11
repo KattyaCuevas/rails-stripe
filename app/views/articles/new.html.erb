@@ -1,1 +1,22 @@
-<!-- ADD YOUR CODE HERE -->
+<h2 class="text-2xl">Crear un Artículo</h2>
+ 
+<%= form_with model: @article do |form| %>
+ <div>
+   <%= form.label :title, class: "block" %>
+   <%= form.text_field :title, class: "border border-gray-300 rounded-xl" %>
+ </div>
+ <div>
+   <%= form.label :body, class: "block" %>
+   <%= form.text_area :body, class: "border border-gray-300 rounded-xl" %>
+ </div>
+ <div>
+   <%= form.label :price, class: "block" %>
+   <%= form.number_field :price, class: "border border-gray-300 rounded-xl" %>
+ </div>
+ <div>
+   <%= form.label :private %>
+   <%= form.check_box :private %>
+ </div>
+ 
+ <%= form.submit "Create or Update", class: "bg-gray-800 ml-2 px-4 py-3 rounded-lg text-sm text-white" %>
+<% end %>
