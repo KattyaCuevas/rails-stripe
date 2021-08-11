@@ -16,7 +16,7 @@
         <p class="text-blueGrey-500">
           <span class="text-blueGrey-800 text-4xl font-extrabold"><%= number_to_currency(subscription.price / 100.0, strip_insignificant_zeros: true) %></span>/mes
         </p>
-        <%= link_to 'Suscribirse', '#', class: 'w-full bg-vividGreen-500 text-vividGreen-50 py-2 rounded-lg text-sm text-center font-bold' %>
+        <%= link_to 'Suscribirse', checkout_index_path(type: 'subscription', subscription_id: subscription.id), method: :post, class: 'w-full bg-vividGreen-500 text-vividGreen-50 py-2 rounded-lg text-sm text-center font-bold' %>
       </article>
     <% end %>
   </section>
