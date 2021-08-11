@@ -24,5 +24,6 @@
       <span class="text-xl font-semibold text-blueGrey-800 uppercase mr-20">Total</span>
       <span class="text-xl font-semibold text-blueGrey-800">$ <%= number_to_currency(@order.order_items.map { |oi| oi.article.price }.sum / 100, delimiter: '', unit: '') %></span>
     </div>
+    <%= link_to "Pay", checkout_index_path(order_id: @order.id), method: :post, class: 'self-end bg-vividGreen-500 text-vividGreen-50 py-3 px-8 rounded-lg text-xl mr-12' %>
   </div>
 </div>
