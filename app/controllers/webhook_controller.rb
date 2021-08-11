@@ -13,7 +13,12 @@ class WebhookController < ApplicationController
       order.update(status: object.status)
     elsif event.type == 'checkout.session.completed'
       order = Order.find_by(stripe_checkout_id: object.id)
+      order.user.update(stripe_customer_id: object.customer)
       order.update(status: object.payment_status)
+    elsif event.type == 'customer.subscription.updated'
+      order = User.find_by(stripe_customer_id: object.customer).orders.order(updated_at: :desc).first
+      subscription = Subscription.find_by(stripe_pricing_id: object.plan.id)
+      order.update(subscription: subscription)
     end
 
     render json: {}, status: 200
