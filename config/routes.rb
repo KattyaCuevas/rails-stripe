@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :order_items, only: [:create]
   resources :orders do
     get '/current', to: 'orders#current', on: :collection
+    get '/checkout', to: 'orders#checkout'
   end
+  post 'webhook', to: 'webhook#receive'
 end

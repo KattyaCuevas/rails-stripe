@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_07_044624) do
+ActiveRecord::Schema.define(version: 2021_08_10_185513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_08_07_044624) do
     t.string "status", default: "created"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "stripe_payment_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
