@@ -40,6 +40,16 @@
       </div>
     </nav>
 
+    <% if user_signed_in? %>
+      <% if current_user.subscription %>
+        <div class="bg-yellow-100 py-3">
+          <p class="text-lg font-light text-center text-yellow-600">
+            Estás suscrito al plan <span class="font-bold"><%= current_user.subscription.name %></span>. Te quedan <span class="font-bold"><%= current_user.remaining_articles %> artículos</span> este mes.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+
     <% if notice %>
       <div class="bg-green-100"><p class="container mx-auto notice px-4 py-2 text-sm"><%= notice %></p></div>
     <% end %>

@@ -30,7 +30,11 @@
           <p class="text-blueGrey-600 font-light absolute left-2/4 top-2/4 transform -translate-x-1/2 -translate-y-1/2">
             Si quieres leer el resto del artículo,
             <% if user_signed_in? %>
-              <%= link_to "agrégalo a tu carrito.", order_items_path(article_id: params[:id]), method: :post, class: 'text-blueGrey-700 font-bold' %>
+              <% if current_user.subscribed? && current_user.remaining_articles > 0 %>
+                <%= link_to "agrégalo como parte de tu suscripción", authorized_articles_path(article_id: params[:id]), method: :post, class: 'text-blueGrey-700 font-bold' %>
+              <% else %>
+                <%= link_to "agrégalo a tu carrito.", order_items_path(article_id: params[:id]), method: :post, class: 'text-blueGrey-700 font-bold' %>
+              <% end %>
             <% else %>
               <%= link_to "inicia sesión", new_user_session_path , class: "text-blue-500" %>
             <% end %>
