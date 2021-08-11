@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_221439) do
+ActiveRecord::Schema.define(version: 2021_08_11_044946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2021_08_10_221439) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id", null: false
     t.index ["category_id"], name: "index_articles_on_category_id"
+  end
+
+  create_table "authorized_articles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "article_id", null: false
+    t.string "authorization_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_authorized_articles_on_article_id"
+    t.index ["user_id"], name: "index_authorized_articles_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -50,7 +60,20 @@ ActiveRecord::Schema.define(version: 2021_08_10_221439) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "stripe_payment_id"
+    t.string "order_type"
+    t.string "stripe_checkout_id"
+    t.bigint "subscription_id"
+    t.index ["subscription_id"], name: "index_orders_on_subscription_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "name"
+    t.string "stripe_pricing_id"
+    t.integer "price"
+    t.integer "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,7 +90,10 @@ ActiveRecord::Schema.define(version: 2021_08_10_221439) do
   end
 
   add_foreign_key "articles", "categories"
+  add_foreign_key "authorized_articles", "articles"
+  add_foreign_key "authorized_articles", "users"
   add_foreign_key "order_items", "articles"
   add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "subscriptions"
   add_foreign_key "orders", "users"
 end

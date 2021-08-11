@@ -1,0 +1,24 @@
+<div class="flex flex-col space-y-16">
+  <h2 class="text-5xl text-blueGrey-800 font-extrabold tracking-wide text-center">Precios</h2>
+  <section class="grid grid-cols-3 space-x-8">
+    <article class="border border-vividGreen-500 rounded-lg px-10 py-10 shadow-xl flex flex-col space-y-8">
+      <h4 class="text-lg text-blueGrey-600 font-bold">Gratis</h4>
+      <p class="text-sm text-blueGrey-500">* Acceso a todos los artículos que tengan la categoría <span class="font-bold">Free</span>.</p>
+      <p class="text-blueGrey-500">
+        <span class="text-blueGrey-800 text-4xl font-extrabold">$0</span>/mes
+      </p>
+      <%= link_to 'Suscribirse', user_signed_in? ? root_path : new_user_session_path, class: 'w-full bg-vividGreen-500 text-vividGreen-50 py-2 rounded-lg text-sm text-center font-bold' %>
+    </article>
+    <% @subscriptions.each do |subscription| %>
+      <article class="border border-vividGreen-500 rounded-lg px-10 py-10 shadow-xl flex flex-col space-y-8">
+        <h4 class="text-lg text-blueGrey-600 font-bold"><%= subscription.name %></h4>
+        <p class="text-sm text-blueGrey-500">* Acceso a <span class="font-bold"><%= subscription.number %> artículos</span> que tú elijas, sin importar el precio individual.</p>
+        <p class="text-blueGrey-500">
+          <span class="text-blueGrey-800 text-4xl font-extrabold"><%= number_to_currency(subscription.price / 100.0, strip_insignificant_zeros: true) %></span>/mes
+        </p>
+        <%= link_to 'Suscribirse', checkout_index_path(type: 'subscription', subscription_id: subscription.id), method: :post, class: 'w-full bg-vividGreen-500 text-vividGreen-50 py-2 rounded-lg text-sm text-center font-bold' %>
+      </article>
+    <% end %>
+  </section>
+  <p class="text-sm text-blueGrey-500 text-center">* Siempre podrás comprar cualquiera de los artículos al precio de su categoría</p>
+</div>
