@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :checkout, only: [:create]
   post 'webhook', to: 'webhook#receive'
   get 'profile', to: 'users#profile'
+  post 'billing_portal', to: 'users#billing_portal'
   resources :authorized_articles, only: [:create]
 end
